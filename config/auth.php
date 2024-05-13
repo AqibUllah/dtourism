@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
+        'guard' => env('AUTH_GUARD', 'admin'),
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 
@@ -36,9 +36,26 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'admin' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
+        'transporter' => [
+            'driver' => 'session',
+            'provider' => 'transporters',
+        ],
+        'hotelmanager' => [
+            'driver' => 'session',
+            'provider' => 'hotelmanagers',
         ],
     ],
 
@@ -64,7 +81,20 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Customer::class,
+        ],
 
+        'transporters' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Transporter::class,
+        ],
+
+        'hotelmanagers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\HotelManager::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

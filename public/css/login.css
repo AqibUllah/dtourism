@@ -1,0 +1,137 @@
+
+  
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('Assets/img/signin.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+.container9 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+   
+}
+
+.form-container {
+    background-color: #f2f2f2;
+    margin-top: 80px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 500px;
+    display: none;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(\Assets\img\login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+h2 {
+    margin: 0;
+}
+
+form {
+    margin-top: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 70%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button[type="submit"] {
+    background-color: #008080;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+#googleLogin {
+    text-align: center;
+    justify-content: space-between;
+}
+
+#googleLogin a {
+    text-decoration: none;
+    color: #333;
+  margin-right: 50px;
+}
+
+#googleLogin img {
+    width: 30px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+#googleLogin i{
+    letter-spacing: 3px;
+    text-decoration: solid;
+    color: blue;
+    display: inline-block;
+}
+#googleLogin button{
+  width: 80%;
+  height: 60px;
+  align-items: center;
+  background-color: white;
+  border: 1px solid black;
+}
+
+ .form-container p {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a {
+    color: #008080;
+    text-decoration: none;
+}
+.floating-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    transition: background-color 0.3s;
+}
+
+.floating-whatsapp a {
+    display: block;
+}
+
+.floating-whatsapp img {
+    width: 40px;
+    height: 40px;
+} 
