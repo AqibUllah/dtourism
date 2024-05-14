@@ -32,6 +32,9 @@ class Authenticate
             case 'customer' :
                 return redirect()->route('customer.login');
 
+            case 'hotelmanager' :
+                return redirect()->route('hotel_manager.login');
+
         }
 
     }

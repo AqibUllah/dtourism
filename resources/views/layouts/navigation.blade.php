@@ -15,6 +15,11 @@
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
                         </a>
                     @endif
+                    @if(auth()->guard('hotelmanager')->check())
+                        <a href="{{ route('hotel_manager.dashboard') }}">
+                            <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
+                        </a>
+                    @endif
                 </div>
 
                 <!-- Navigation Links -->
@@ -27,6 +32,11 @@
                     @if(auth()->guard('admin')->check())
                         <x-nav-link :href="route('admin.vehicles.create')" :active="request()->routeIs('admin.vehicles.create')">
                             {{ __('Vehicle') }}
+                        </x-nav-link>
+                    @endif
+                    @if(auth()->guard('hotelmanager')->check())
+                        <x-nav-link :href="route('hotel_manager.dashboard')" :active="request()->routeIs('hotel_manager.dashboard')">
+                            {{ __('Dashboard') }}
                         </x-nav-link>
                     @endif
                     @if(auth()->guard('customer')->check())
@@ -55,6 +65,9 @@
                             @if(auth()->guard('customer')->check())
                                 <div>{{ Auth::guard('customer')->user()->name }}</div>
                             @endif
+                            @if(auth()->guard('hotelmanager')->check())
+                                <div>{{ Auth::guard('hotelmanager')->user()->name }}</div>
+                            @endif
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
@@ -73,6 +86,12 @@
                             </x-dropdown-link>
                         @endif
 
+                        @if(auth()->guard('hotelmanager')->check())
+                            <x-dropdown-link :href="route('hotel_manager.profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                        @endif
+
                         @if(auth()->guard('customer')->check())
                             <x-dropdown-link :href="route('customer.profile.edit')">
                                 {{ __('Profile') }}
@@ -85,6 +104,17 @@
                             <form method="POST" action="{{ route('admin.logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('admin.logout')"
+                                                 onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        @endif
+
+                            @if(auth()->guard('hotelmanager')->check())
+                            <form method="POST" action="{{ route('hotel_manager.logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('hotel_manager.logout')"
                                                  onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                     {{ __('Log Out') }}

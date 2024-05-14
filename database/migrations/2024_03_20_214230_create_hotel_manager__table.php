@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('hotel_managers', function (Blueprint $table) {
             $table->id();
-            $table->string('h_manager_name');
-            $table->string('h_manager_email')->unique();
-            $table->timestamp('h_manager_email_verified_at')->nullable();
-            $table->string('h_manager_password');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

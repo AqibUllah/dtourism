@@ -101,7 +101,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="signInDropdown">
                     <li><a class="dropdown-item" href="{{ route('customer.login') }}">Customer</a></li>
-                    <li><a class="dropdown-item" href="{{ route('customer.login') }}">Hotel Manager</a></li>
+                    <li><a class="dropdown-item" href="{{ route('hotel_manager.login') }}">Hotel Manager</a></li>
                     <li><a class="dropdown-item" href="{{ route('customer.login') }}">Transport Manager</a></li>
                     <li><a class="dropdown-item" href="{{ route('customer.login') }}">Tour Guide</a></li>
                 </ul>

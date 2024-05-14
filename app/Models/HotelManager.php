@@ -11,7 +11,9 @@ class HotelManager extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = "hotel_manager_";
+    protected $table = "hotel_managers";
+
+    protected $guarded = "hotelmanager";
 
     protected $fillable = [
         'name',
@@ -25,7 +27,7 @@ class HotelManager extends Authenticatable
     ];
 
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'h_manager_email_verified_at' => 'datetime',
     ];
     public function hotels()
     {

@@ -31,12 +31,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 //Route::get('/customer/register', [CustomerController::class, 'showRegistrationForm'])->name('customer.register');
 //Route::post('/customer/register', [CustomerController::class, 'register']);
 
-
-Route::get('/hotelmanager/login', [HotelManagerController::class, 'showLoginForm'])->name('hotelmanager.login');
-Route::post('/hotelmanager/login', [HotelManagerController::class, 'login']);
-Route::get('/hotelmanager/register', [HotelManagerController::class, 'showRegistrationForm'])->name('hotelmanager.register');
-Route::post('/hotelmanager/register', [HotelManagerController::class, 'register']);
-Route::post('/logout', [HotelManagerController::class, 'logout'])->name('logout-manager');
 Route::post('/create-hotel', [HotelManagerController::class, 'createHotel'])->name('create-hotel');
 
 Route::prefix('transporter')->group(function () {
@@ -102,3 +96,5 @@ Route::get('/search', 'App\Http\Controllers\SearchController@search')->name('sea
 require __DIR__.'/admin.php';
 
 require __DIR__.'/customer.php';
+
+require __DIR__.'/hotel_manager.php';
