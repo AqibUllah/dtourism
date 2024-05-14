@@ -20,6 +20,11 @@
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
                         </a>
                     @endif
+                    @if(auth()->guard('transporter')->check())
+                        <a href="{{ route('transporter.dashboard') }}">
+                            <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
+                        </a>
+                    @endif
                 </div>
 
                 <!-- Navigation Links -->
@@ -41,6 +46,11 @@
                     @endif
                     @if(auth()->guard('customer')->check())
                         <x-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                    @endif
+                    @if(auth()->guard('transporter')->check())
+                        <x-nav-link :href="route('transporter.dashboard')" :active="request()->routeIs('transporter.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     @endif
@@ -68,6 +78,9 @@
                             @if(auth()->guard('hotelmanager')->check())
                                 <div>{{ Auth::guard('hotelmanager')->user()->name }}</div>
                             @endif
+                            @if(auth()->guard('transporter')->check())
+                                <div>{{ Auth::guard('transporter')->user()->name }}</div>
+                            @endif
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
@@ -92,6 +105,12 @@
                             </x-dropdown-link>
                         @endif
 
+                        @if(auth()->guard('transporter')->check())
+                            <x-dropdown-link :href="route('transporter.profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                        @endif
+
                         @if(auth()->guard('customer')->check())
                             <x-dropdown-link :href="route('customer.profile.edit')">
                                 {{ __('Profile') }}
@@ -111,6 +130,17 @@
                             </form>
                         @endif
 
+                        @if(auth()->guard('transporter')->check())
+                            <form method="POST" action="{{ route('transporter.logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('transporter.logout')"
+                                                 onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        @endif
+
                             @if(auth()->guard('hotelmanager')->check())
                             <form method="POST" action="{{ route('hotel_manager.logout') }}">
                                 @csrf
@@ -122,16 +152,16 @@
                             </form>
                         @endif
 
-                                @if(auth()->guard('customer')->check())
-                                    <form method="POST" action="{{ route('customer.logout') }}">
-                                        @csrf
-                                        <x-dropdown-link :href="route('customer.logout')"
-                                                         onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                            {{ __('Log Out') }}
-                                        </x-dropdown-link>
-                                    </form>
-                                @endif
+                        @if(auth()->guard('customer')->check())
+                            <form method="POST" action="{{ route('customer.logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('customer.logout')"
+                                                 onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -169,6 +199,12 @@
                 @if(auth()->guard('customer')->check())
                     <div class="font-medium text-sm text-gray-500">{{ Auth::guard('customer')->user()->email }}</div>
                 @endif
+                @if(auth()->guard('hotelmanager')->check())
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::guard('hotelmanager')->user()->email }}</div>
+                @endif
+                @if(auth()->guard('transporter')->check())
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::guard('transporter')->user()->email }}</div>
+                @endif
             </div>
 
             <div class="mt-3 space-y-1">
@@ -180,6 +216,16 @@
 
                 @if(auth()->guard('customer')->check())
                     <x-responsive-nav-link :href="route('customer.profile.edit')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                @endif
+                @if(auth()->guard('hotelmanager')->check())
+                    <x-responsive-nav-link :href="route('hotel_manager.profile.edit')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                @endif
+                @if(auth()->guard('transporter')->check())
+                    <x-responsive-nav-link :href="route('transporter.profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
                 @endif

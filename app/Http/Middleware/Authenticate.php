@@ -31,9 +31,14 @@ class Authenticate
                 break;
             case 'customer' :
                 return redirect()->route('customer.login');
+                break;
 
             case 'hotelmanager' :
                 return redirect()->route('hotel_manager.login');
+                break;
+
+            case 'transporter' :
+                return redirect()->route('transporter.login');
 
         }
 
