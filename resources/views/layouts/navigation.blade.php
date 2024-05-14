@@ -60,7 +60,7 @@
                         </x-nav-link>
                     @endif
                     @if(auth()->guard('transporter')->check())
-                        <x-nav-link :href="route('transporter.vehicles.create')" :active="request()->routeIs('transporter.vehicles.create')">
+                        <x-nav-link :href="route('transporter.vehicles.index')" :active="request()->routeIs('transporter.vehicles.*')">
                             {{ __('Vehicles') }}
                         </x-nav-link>
                     @endif
