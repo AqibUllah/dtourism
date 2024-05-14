@@ -7,7 +7,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="container">
-                <x-nav-link href="{{ route('transporter.vehicles.create') }}" class="bg-blue-500 text-white mb-3 px-4 py-2 text-center rounded-md">Add Vehicle</x-nav-link>
+                <x-nav-link href="{{ route('transporter.vehicles.create') }}" class="bg-blue-500  mb-3 px-4 py-2 text-center rounded-md">Add Vehicle</x-nav-link>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -35,7 +35,7 @@
                             <td class="px-6 py-4">{{ $vehicle->capacity }}</td>
                             <td class="px-6 py-4">{{ $vehicle->price_per_km }}</td>
                             <td class="px-6 py-4 flex gap-5 items-center">
-                                <x-nav-link href="{{ route('transporter.vehicles.edit', $vehicle) }}" class="btn btn-sm btn-primary bg-purple-300 px-4 py-2 text-center rounded-md">Edit</x-nav-link>
+                                <x-nav-link href="{{ route('transporter.vehicles.edit', $vehicle) }}" class=" bg-purple-300 px-4 py-2 text-center rounded-md">Edit</x-nav-link>
                                 <form action="{{ route('transporter.vehicles.destroy', $vehicle) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
