@@ -22,12 +22,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -93,20 +93,30 @@
 
 {{--                <a href="contact.html" class="nav-item nav-link">Contact</a>--}}
             </div>
-            <li class="submenu">
-                <a href="#" id="signin" class="btn btn-primary rounded-pill py-2 px-4">Sign In</a>
-                <ul class="submenu-list" id="signin-submenu">
-                    <li><a href="{{ route('customer.login') }}">Customer</a></li>
-                    <li><a href="{{ route('customer.login') }}">Hotel Manager</a></li>
-                    <!-- <li><a href="Login_Hotel_Manager.html">Hotel Manager</a></li> -->
-                    <li><a href="{{ route('customer.login') }}">Transport Manager</a></li>
-                    <!-- <li><a href="Login_Transport_Manager.html">Tour Guide</a></li> -->
-                    <li><a href="{{ route('customer.login') }}">Tour Guide</a></li>
+
+            <!-- Sign In Dropdown -->
+            <div class="dropdown">
+                <button class="btn btn-primary rounded-pill py-2 px-4 dropdown-toggle" type="button" id="signInDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sign In
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="signInDropdown">
+                    <li><a class="dropdown-item" href="{{ route('customer.login') }}">Customer</a></li>
+                    <li><a class="dropdown-item" href="{{ route('customer.login') }}">Hotel Manager</a></li>
+                    <li><a class="dropdown-item" href="{{ route('customer.login') }}">Transport Manager</a></li>
+                    <li><a class="dropdown-item" href="{{ route('customer.login') }}">Tour Guide</a></li>
                 </ul>
-            </li>
-            <li class="submenu">
-                <a href="{{ route('customer.bookings.create') }}" id="create-booking" class="btn btn-primary rounded-pill py-2 px-4">Booking</a>
-            </li>
+            </div>
+
+            <!-- Booking Dropdown -->
+            <div class="dropdown">
+                <button class="btn btn-primary rounded-pill py-2 px-4 dropdown-toggle" type="button" id="bookingDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Booking
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="bookingDropdown">
+                    <li><a class="dropdown-item" href="{{ route('customer.bookings.create') }}">Create Booking</a></li>
+                    <!-- Add more options if needed -->
+                </ul>
+            </div>
         </div>
     </nav>
     <script>
@@ -324,7 +334,7 @@
                         <p>Congratulations on your upcoming honeymoon! Planning a honeymoon is an exciting and special task.</p>
                         <div class="d-flex justify-content-center mb-2">
                             <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                            <a href="hotel.html" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                            <a href="{{ route('customer.bookings.create') }}" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -351,7 +361,7 @@
                         <p>Planning a group trip can be a bit complex, as you'll need to consider the preferences and needs of multiple individuals.</p>
                         <div class="d-flex justify-content-center mb-2">
                             <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                            <a href="hotel.html" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                            <a href="{{ route('customer.bookings.create') }}" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -378,7 +388,7 @@
                         <p>Planning a family tour considering the needs and preferences of different family members, spanning various ages and interests.</p>
                         <div class="d-flex justify-content-center mb-2">
                             <a href="#" class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
-                            <a href="hotel.html" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
+                            <a href="{{ route('customer.bookings.create') }}" class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -555,7 +565,7 @@
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-3">Company</h4>
-                <a class="btn btn-link" href="">About Us</a>
+                <a class="btn btn-link" href="#about">About Us</a>
                 <a class="btn btn-link" href="">Contact Us</a>
                 <a class="btn btn-link" href="">Privacy Policy</a>
                 <a class="btn btn-link" href="">Terms & Condition</a>
@@ -610,7 +620,7 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">www.tourDpakistan.com</a>, All Right Reserved.
+                    &copy; <a class="border-bottom" href="#">{{ url('/') }}</a>, All Right Reserved.
 
                     <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                     Designed By <a class="border-bottom" href="">ABC</a>
