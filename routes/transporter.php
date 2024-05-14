@@ -74,4 +74,14 @@ Route::prefix('transporter')->middleware(['auth:transporter'])->name('transporte
             Route::delete('/profile',  'destroy')->name('profile.destroy');
         });
 
+        Route::controller(\App\Http\Controllers\Transporter\VehicleController::class)->group(function () {
+            Route::get('/vehicles/index', 'index')->name('vehicles.index');
+            Route::get('/vehicles/create', 'create')->name('vehicles.create');
+            Route::post('/vehicles/store', 'store')->name('vehicles.store');
+            Route::get('/vehicles/edit/{vehicle}', 'edit')->name('vehicles.edit');
+            Route::get('/vehicles/show/{vehicle}', 'show')->name('vehicles.show');
+            Route::patch('/vehicles/update/{vehicle}', 'update')->name('vehicles.update');
+            Route::delete('/vehicles/destroy/{vehicle}',  'destroy')->name('vehicles.destroy');
+        });
+
 });
