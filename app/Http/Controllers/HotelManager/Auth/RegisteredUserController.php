@@ -44,7 +44,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        Auth::guard('hotelmanager')->login($user);
 
         return redirect(route('hotel_manager.dashboard', absolute: false));
     }

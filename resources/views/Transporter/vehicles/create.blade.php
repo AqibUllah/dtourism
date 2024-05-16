@@ -14,35 +14,42 @@
                     @csrf
 
                     <div class="mb-3">
-                        <label for="company_name" class="form-label">Company Name</label>
-                        <x-text-input type="text" class="form-control w-full" id="company_name" name="company_name" placeholder="company name" />
+                        <x-input-label for="company_name" value="{{ __('Company Name*') }}" />
+                        <x-text-input type="text" class="form-control w-full mt-1" id="company_name" name="company_name" required value="{{ old('company_name') }}" placeholder="company name" />
+                        <x-input-error clss="mb-4" :messages="$errors->get('company_name')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <x-text-input type="text" class="form-control w-full" id="email" name="email" placeholder="Enter email" />
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('Email*') }}" />
+                        <x-text-input type="text" class="form-control w-full mt-1" id="email" name="email" required value="{{ old('email') }}" placeholder="Enter email" />
+                        <x-input-error clss="mb-4" :messages="$errors->get('email')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
-                        <x-text-input type="text" class="form-control w-full" id="phone" name="phone" placeholder="Enter phone" />
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('Phone*') }}" />
+                        <x-text-input type="text" class="form-control w-full mt-1" id="phone" name="phone" required value="{{ old('phone') }}"  placeholder="Enter phone" />
+                        <x-input-error clss="mb-4" :messages="$errors->get('phone')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
-                        <label for="city" class="form-label">City</label>
-                        <x-text-input type="text" class="form-control w-full" id="city" name="city" placeholder="Enter city" />
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('City*') }}" />
+                        <x-text-input type="text" class="form-control w-full mt-1" id="city" name="city" required value="{{ old('city') }}" placeholder="Enter city" />
+                        <x-input-error clss="mb-4" :messages="$errors->get('city')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
-                        <label for="vehicle_type" class="form-label">Vehicle Type</label>
-                        <x-text-input type="text" class="form-control w-full" id="vehicle_type" name="vehicle_type" placeholder="Enter type" />
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('EmaVehicle Type*') }}" />
+                        <x-text-input type="text" class="form-control w-full mt-1" id="vehicle_type" name="vehicle_type" required value="{{ old('vehicle_type') }}" placeholder="Enter type" />
+                        <x-input-error clss="mb-4" :messages="$errors->get('vehicle_type')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
-                        <label for="capacity" class="form-label">Vehicle Capacity</label>
-                        <x-text-input type="text" class="form-control w-full" id="capacity" name="capacity" placeholder="Enter capacity" />
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('Vehicle Capacity*') }}" />
+                        <x-text-input type="text" class="form-control w-full mt-1" id="capacity" name="capacity" required value="{{ old('capacity') }}" placeholder="Enter capacity" />
+                        <x-input-error clss="mb-4" :messages="$errors->get('capacity')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
-                        <label for="price_per_km" class="form-label">Vehicle Price / KM</label>
-                        <x-text-input type="text" class="form-control w-full" id="price_per_km" name="price_per_km" placeholder="Enter Price/Km" />
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('Vehicle Price / KM*') }}" />
+                        <x-text-input type="text" class="form-control w-full mt-1" id="price_per_km" name="price_per_km" required value="{{ old('price_per_km') }}" placeholder="Enter Price/Km" />
+                        <x-input-error clss="mb-4" :messages="$errors->get('price_per_km')" class="mt-1 mb-4" />
                     </div>
                     <!-- Add more input fields for other vehicle attributes as needed -->
-                    <x-primary-button type="submit">Submit</x-primary-button>
+                    <x-primary-button class="mt-4" type="submit">Submit</x-primary-button>
                 </form>
             </div>
         </div>

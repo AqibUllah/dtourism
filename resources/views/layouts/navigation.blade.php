@@ -43,6 +43,9 @@
                         <x-nav-link :href="route('hotel_manager.dashboard')" :active="request()->routeIs('hotel_manager.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('hotel_manager.hotels.index')" :active="request()->routeIs('hotel_manager.hotels.*')">
+                            {{ __('Hotels') }}
+                        </x-nav-link>
                     @endif
                     @if(auth()->guard('customer')->check())
                         <x-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')">

@@ -74,4 +74,6 @@ Route::prefix('hotelmanager')->middleware(['auth:hotelmanager'])->name('hotel_ma
             Route::delete('/profile',  'destroy')->name('profile.destroy');
         });
 
+        Route::resource('hotels',\App\Http\Controllers\HotelManager\HotelController::class);
+
 });

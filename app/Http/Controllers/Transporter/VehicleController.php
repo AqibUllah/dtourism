@@ -22,6 +22,16 @@ class VehicleController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'company_name' => 'required|string|max:255',
+            'email' => 'required|string|max:255|email',
+            'phone' => 'required|numeric|min:6',
+            'city' => 'required|string|max:255',
+            'vehicle_type' => 'required|string|max:255',
+            'capacity' => 'required|string|max:255',
+            'price_per_km' => 'required|string|max:255',
+        ]);
+
         Vehicle::create([
             'company_name' => $request->company_name,
             'email' => $request->email,

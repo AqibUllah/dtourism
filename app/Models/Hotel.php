@@ -11,6 +11,7 @@ class Hotel extends Model
 
     protected $fillable = [
         'name',
+        'description',
         'category',
         'city',
         'street',
@@ -22,6 +23,8 @@ class Hotel extends Model
         'room_type',
         'cost_per_day',
     ];
+
+    public $timestamps = false;
 
     // Define the relationship with the Customer model
     // public function manager()
