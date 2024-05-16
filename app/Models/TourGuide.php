@@ -15,13 +15,13 @@ class TourGuide extends Authenticatable
         'name',
         'phone',
         'email',
+        'password',
         'age',
         'city',
         'street',
         'house_no',
         'gender',
         'nationality',
-        'password',
     ];
 
     protected $hidden = [

@@ -57,6 +57,10 @@ return [
             'driver' => 'session',
             'provider' => 'hotelmanagers',
         ],
+        'tour_guide' => [
+            'driver' => 'session',
+            'provider' => 'tour_guides',
+        ],
     ],
 
     /*
@@ -94,6 +98,10 @@ return [
         'hotelmanagers' => [
             'driver' => 'eloquent',
             'model' => App\Models\HotelManager::class,
+        ],
+        'tour_guides' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\TourGuide::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

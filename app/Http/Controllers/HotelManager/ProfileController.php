@@ -49,7 +49,7 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        Auth::logout();
+        Auth::guard('hotelmanager')->logout();
 
         $user->delete();
 

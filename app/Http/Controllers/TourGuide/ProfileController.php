@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Customer;
+namespace App\Http\Controllers\TourGuide;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Customer\ProfileUpdateRequest;
+use App\Http\Requests\TourGuide\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,10 +15,10 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request)
+    public function edit(Request $request): View
     {
-        return view('customer.profile.edit', [
-            'user' => Auth::guard('customer')->user(),
+        return view('tour_guide.profile.edit', [
+            'user' => Auth::guard('tour_guide')->user(),
         ]);
     }
 
@@ -27,15 +27,15 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        \auth()->guard('customer')->user()->fill($request->validated());
+        Auth::guard('tour_guide')->user()->fill($request->validated());
 
-        if (Auth::guard('customer')->user()->isDirty('email')) {
-            Auth::guard('customer')->user()->email_verified_at = null;
-        }
+//        if (Auth::guard('tour_guide')->isDirty('email')) {
+//            Auth::guard('tour_guide')->user()->email_verified_at = null;
+//        }
 
-        Auth::guard('customer')->user()->save();
+        Auth::guard('tour_guide')->user()->save();
 
-        return Redirect::route('customer.profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('tour_guide.profile.edit')->with('status', 'profile-updated');
     }
 
     /**
@@ -49,7 +49,7 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        Auth::guard('customer')->logout();
+        Auth::guard('tour_guide')->logout();
 
         $user->delete();
 

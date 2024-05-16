@@ -9,19 +9,20 @@
                         <a href="{{ route('admin.dashboard') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
                         </a>
-                    @endif
-                    @if(auth()->guard('customer')->check())
+                    @elseif(auth()->guard('customer')->check())
                         <a href="{{ route('customer.dashboard') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
                         </a>
-                    @endif
-                    @if(auth()->guard('hotelmanager')->check())
+                    @elseif(auth()->guard('hotelmanager')->check())
                         <a href="{{ route('hotel_manager.dashboard') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
                         </a>
-                    @endif
-                    @if(auth()->guard('transporter')->check())
+                    @elseif(auth()->guard('transporter')->check())
                         <a href="{{ route('transporter.dashboard') }}">
+                            <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
+                        </a>
+                    @else
+                        <a href="{{ route('tour_guide.dashboard') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800"/>
                         </a>
                     @endif
@@ -33,38 +34,41 @@
                         <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                    @endif
-                    @if(auth()->guard('admin')->check())
-                        <x-nav-link :href="route('admin.vehicles.create')" :active="request()->routeIs('admin.vehicles.create')">
+                        <x-nav-link :href="route('admin.vehicles.create')"
+                                    :active="request()->routeIs('admin.vehicles.create')">
                             {{ __('Vehicle') }}
                         </x-nav-link>
-                    @endif
-                    @if(auth()->guard('hotelmanager')->check())
-                        <x-nav-link :href="route('hotel_manager.dashboard')" :active="request()->routeIs('hotel_manager.dashboard')">
+                    @elseif(auth()->guard('hotelmanager')->check())
+                        <x-nav-link :href="route('hotel_manager.dashboard')"
+                                    :active="request()->routeIs('hotel_manager.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('hotel_manager.hotels.index')" :active="request()->routeIs('hotel_manager.hotels.*')">
+                        <x-nav-link :href="route('hotel_manager.hotels.index')"
+                                    :active="request()->routeIs('hotel_manager.hotels.*')">
                             {{ __('Hotels') }}
                         </x-nav-link>
-                    @endif
-                    @if(auth()->guard('customer')->check())
-                        <x-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')">
+                    @elseif(auth()->guard('customer')->check())
+                        <x-nav-link :href="route('customer.dashboard')"
+                                    :active="request()->routeIs('customer.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                    @endif
-                    @if(auth()->guard('transporter')->check())
-                        <x-nav-link :href="route('transporter.dashboard')" :active="request()->routeIs('transporter.dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
-                    @endif
-                    @if(auth()->guard('customer')->check())
-                        <x-nav-link :href="route('customer.bookings.create')" :active="request()->routeIs('customer.bookings.create')">
+                        <x-nav-link :href="route('customer.bookings.create')"
+                                    :active="request()->routeIs('customer.bookings.create')">
                             {{ __('Booking') }}
                         </x-nav-link>
-                    @endif
-                    @if(auth()->guard('transporter')->check())
-                        <x-nav-link :href="route('transporter.vehicles.index')" :active="request()->routeIs('transporter.vehicles.*')">
+                    @elseif(auth()->guard('transporter')->check())
+                        <x-nav-link :href="route('transporter.dashboard')"
+                                    :active="request()->routeIs('transporter.dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('transporter.vehicles.index')"
+                                    :active="request()->routeIs('transporter.vehicles.*')">
                             {{ __('Vehicles') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('tour_guide.dashboard')"
+                                    :active="request()->routeIs('tour_guide.dashboard')">
+                            {{ __('Dashboard') }}
                         </x-nav-link>
                     @endif
 
@@ -79,15 +83,14 @@
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             @if(auth()->guard('admin')->check())
                                 <div>{{ Auth::guard('admin')->user()->name }}</div>
-                            @endif
-                            @if(auth()->guard('customer')->check())
+                            @elseif(auth()->guard('customer')->check())
                                 <div>{{ Auth::guard('customer')->user()->name }}</div>
-                            @endif
-                            @if(auth()->guard('hotelmanager')->check())
+                            @elseif(auth()->guard('hotelmanager')->check())
                                 <div>{{ Auth::guard('hotelmanager')->user()->name }}</div>
-                            @endif
-                            @if(auth()->guard('transporter')->check())
+                            @elseif(auth()->guard('transporter')->check())
                                 <div>{{ Auth::guard('transporter')->user()->name }}</div>
+                            @else
+                                <div>{{ Auth::guard('tour_guide')->user()->name }}</div>
                             @endif
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -105,22 +108,20 @@
                             <x-dropdown-link :href="route('admin.profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
-                        @endif
-
-                        @if(auth()->guard('hotelmanager')->check())
+                        @elseif(auth()->guard('hotelmanager')->check())
                             <x-dropdown-link :href="route('hotel_manager.profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
-                        @endif
-
-                        @if(auth()->guard('transporter')->check())
+                        @elseif(auth()->guard('transporter')->check())
                             <x-dropdown-link :href="route('transporter.profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
-                        @endif
-
-                        @if(auth()->guard('customer')->check())
+                        @elseif(auth()->guard('customer')->check())
                             <x-dropdown-link :href="route('customer.profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                        @else
+                            <x-dropdown-link :href="route('tour_guide.profile.edit')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
                         @endif
@@ -136,9 +137,7 @@
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
-                        @endif
-
-                        @if(auth()->guard('transporter')->check())
+                        @elseif(auth()->guard('transporter')->check())
                             <form method="POST" action="{{ route('transporter.logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('transporter.logout')"
@@ -147,9 +146,7 @@
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
-                        @endif
-
-                            @if(auth()->guard('hotelmanager')->check())
+                        @elseif(auth()->guard('hotelmanager')->check())
                             <form method="POST" action="{{ route('hotel_manager.logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('hotel_manager.logout')"
@@ -158,14 +155,21 @@
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
-                        @endif
-
-                        @if(auth()->guard('customer')->check())
+                        @elseif(auth()->guard('customer')->check())
                             <form method="POST" action="{{ route('customer.logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('customer.logout')"
                                                  onclick="event.preventDefault();
                                         this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        @else
+                            <form method="POST" action="{{ route('tour_guide.logout') }}">
+                                @csrf
+                                <x-dropdown-link :href="route('tour_guide.logout')"
+                                                 onclick="event.preventDefault();
+                                    this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
@@ -198,20 +202,24 @@
                 <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-            @endif
-
-            @if(auth()->guard('customer')->check())
-                <x-responsive-nav-link :href="route('customer.dashboard')" :active="request()->routeIs('customer.dashboard')">
+            @elseif(auth()->guard('customer')->check())
+                <x-responsive-nav-link :href="route('customer.dashboard')"
+                                       :active="request()->routeIs('customer.dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-            @endif
-            @if(auth()->guard('hotelmanager')->check())
-                <x-responsive-nav-link :href="route('hotel_manager.dashboard')" :active="request()->routeIs('hotel_manager.dashboard')">
+            @elseif(auth()->guard('hotelmanager')->check())
+                <x-responsive-nav-link :href="route('hotel_manager.dashboard')"
+                                       :active="request()->routeIs('hotel_manager.dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
-            @endif
-            @if(auth()->guard('transporter')->check())
-                <x-responsive-nav-link :href="route('transporter.dashboard')" :active="request()->routeIs('transporter.dashboard')">
+            @elseif(auth()->guard('transporter')->check())
+                <x-responsive-nav-link :href="route('transporter.dashboard')"
+                                       :active="request()->routeIs('transporter.dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+            @else
+                <x-responsive-nav-link :href="route('tour_guide.dashboard')"
+                                       :active="request()->routeIs('tour_guide.dashboard')">
                     {{ __('Dashboard') }}
                 </x-responsive-nav-link>
             @endif
@@ -222,15 +230,15 @@
             <div class="px-4">
                 @if(auth()->guard('admin')->check())
                     <div class="font-medium text-base text-gray-800">{{ Auth::guard('admin')->user()->name }}</div>
-                @endif
-                @if(auth()->guard('customer')->check())
+                @elseif(auth()->guard('customer')->check())
                     <div class="font-medium text-sm text-gray-500">{{ Auth::guard('customer')->user()->email }}</div>
-                @endif
-                @if(auth()->guard('hotelmanager')->check())
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::guard('hotelmanager')->user()->email }}</div>
-                @endif
-                @if(auth()->guard('transporter')->check())
+                @elseif(auth()->guard('hotelmanager')->check())
+                    <div
+                        class="font-medium text-sm text-gray-500">{{ Auth::guard('hotelmanager')->user()->email }}</div>
+                @elseif(auth()->guard('transporter')->check())
                     <div class="font-medium text-sm text-gray-500">{{ Auth::guard('transporter')->user()->email }}</div>
+                @else
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::guard('tour_guide')->user()->email }}</div>
                 @endif
             </div>
 
@@ -239,35 +247,71 @@
                     <x-responsive-nav-link :href="route('admin.profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
-                @endif
-
-                @if(auth()->guard('customer')->check())
+                @elseif(auth()->guard('customer')->check())
                     <x-responsive-nav-link :href="route('customer.profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
-                @endif
-                @if(auth()->guard('hotelmanager')->check())
+                @elseif(auth()->guard('hotelmanager')->check())
                     <x-responsive-nav-link :href="route('hotel_manager.profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
-                @endif
-                @if(auth()->guard('transporter')->check())
+                @elseif(auth()->guard('transporter')->check())
                     <x-responsive-nav-link :href="route('transporter.profile.edit')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
+                @else
+                    <x-responsive-nav-link :href="route('tour_guide.profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
                 @endif
 
-
                 <!-- Authentication -->
-                <form method="POST" action="{{ route('admin.logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('admin.logout')"
-                                           onclick="event.preventDefault();
+                @if(auth()->guard('admin')->check())
+                    <form method="POST" action="{{ route('admin.logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('admin.logout')"
+                                               onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @elseif(auth()->guard('transporter')->check())
+                    <form method="POST" action="{{ route('transporter.logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('transporter.logout')"
+                                               onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @elseif(auth()->guard('hotelmanager')->check())
+                    <form method="POST" action="{{ route('hotel_manager.logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('hotel_manager.logout')"
+                                               onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @elseif(auth()->guard('customer')->check())
+                    <form method="POST" action="{{ route('customer.logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('customer.logout')"
+                                               onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @else
+                    <form method="POST" action="{{ route('tour_guide.logout') }}">
+                        @csrf
+                        <x-responsive-nav-link :href="route('tour_guide.logout')"
+                                               onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                            {{ __('Log Out') }}
+                        </x-responsive-nav-link>
+                    </form>
+                @endif
             </div>
         </div>
     </div>

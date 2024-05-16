@@ -103,7 +103,7 @@
                     <li><a class="dropdown-item" href="{{ route('customer.login') }}">Customer</a></li>
                     <li><a class="dropdown-item" href="{{ route('hotel_manager.login') }}">Hotel Manager</a></li>
                     <li><a class="dropdown-item" href="{{ route('transporter.login') }}">Transport Manager</a></li>
-                    <li><a class="dropdown-item" href="{{ route('customer.login') }}">Tour Guide</a></li>
+                    <li><a class="dropdown-item" href="{{ route('tour_guide.login') }}">Tour Guide</a></li>
                 </ul>
             </div>
 

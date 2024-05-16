@@ -100,3 +100,6 @@ require __DIR__.'/customer.php';
 require __DIR__.'/hotel_manager.php';
 
 require __DIR__.'/transporter.php';
+
+require __DIR__.'/tour_guide.php';
+
