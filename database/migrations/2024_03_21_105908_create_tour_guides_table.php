@@ -14,11 +14,15 @@ class CreateTourGuidesTable extends Migration
             $table->string('phone');
             $table->string('email')->unique();
             $table->integer('age');
-            $table->string('city');
-            $table->string('street');
-            $table->string('house_no');
-            $table->enum('gender', ['male', 'female']);
-            $table->enum('nationality', ['pakistani', 'other']);
+            $table->string('city')->nullable();
+            $table->string('street')->nullable();
+            $table->string('house_no')->nullable();
+            $table->string('gender');
+            $table->string('nationality');
+            $table->longText('image')->nullable();
+            $table->string('language');
+            $table->string('specialization');
+            $table->string('price_per_3_hours');
             $table->timestamps();
         });
     }

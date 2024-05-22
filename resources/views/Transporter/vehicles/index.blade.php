@@ -6,6 +6,11 @@
     </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="my-4">
+                @if(session()->has('success'))
+                    <x-Alertify::info title="Success" body="{{ session('success') }}" />
+                @endif
+            </div>
             <div class="container">
                 <x-nav-link href="{{ route('transporter.vehicles.create') }}" class="bg-blue-500  mb-3 px-4 py-2 text-center rounded-md">Add Vehicle</x-nav-link>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -13,6 +18,7 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                         <th scope="col" class="px-6 py-50">ID</th>
+                        <th scope="col" class="px-6 py-50">Picture</th>
                         <th scope="col" class="px-6 py-50">Company Name</th>
                         <th scope="col" class="px-6 py-50">Email</th>
                         <th scope="col" class="px-6 py-50">Phone</th>
@@ -27,6 +33,9 @@
                     @foreach ($vehicles as $vehicle)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="px-6 py-4">{{ $vehicle->id }}</td>
+                            <td class="px-6 py-4">
+                                <img width="100%" height="100%" style="height: 50px;width: 50px;" src="{{ file_exists($vehicle->picture) ? $vehicle->picture : asset('storage/uploads/default/no-image.png') }}" alt="vehicle image">
+                            </td>
                             <td class="px-6 py-4">{{ $vehicle->company_name }}</td>
                             <td class="px-6 py-4">{{ $vehicle->email }}</td>
                             <td class="px-6 py-4">{{ $vehicle->phone }}</td>

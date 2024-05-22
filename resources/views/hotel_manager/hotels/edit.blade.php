@@ -8,9 +8,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="container">
+            <div class="container bg-white p-5 shadow-md">
 
-                <form action="{{ route('hotel_manager.hotels.update',$hotel) }}" method="POST">
+                <form action="{{ route('hotel_manager.hotels.update',$hotel) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="mb-3">
@@ -25,7 +25,13 @@
                     </div>
                     <div class="mb-3">
                         <x-input-label for="category" class="mt-2" value="{{ __('Category*') }}" />
-                        <x-text-input type="text" class="form-control w-full mt-1" id="category" name="category" required value="{{ $hotel->category }}" placeholder="Enter category" />
+                        <x-select-input
+                            name="category"
+                            :options="['one star' => 'One Star', 'two star' => 'Two Star']"
+                            placeholder="select category"
+                            selected="{{ $hotel->category }}"
+                            required
+                        />
                         <x-input-error clss="mb-4" :messages="$errors->get('category')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
@@ -40,7 +46,7 @@
                     </div>
                     <div class="mb-3">
                         <x-input-label for="hotelNo" class="mt-2" value="{{ __('Hotel No*') }}" />
-                        <x-text-input type="text" class="form-control w-full mt-1" id="hotelNo" name="hotelNo" required value="{{ $hotel->hotelNo }}" placeholder="Enter Hotel #" />
+                        <x-text-input type="number" class="form-control w-full mt-1" id="hotelNo" name="hotelNo" required value="{{ $hotel->hotelNo }}" placeholder="Enter Hotel #" />
                         <x-input-error clss="mb-4" :messages="$errors->get('hotelNo')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
@@ -55,23 +61,34 @@
                     </div>
                     <div class="mb-3">
                         <x-input-label for="total_rooms" class="mt-2" value="{{ __('Total Rooms*') }}" />
-                        <x-text-input type="text" class="form-control w-full mt-1" id="total_rooms" name="total_rooms" required value="{{ $hotel->total_rooms }}" placeholder="Enter total rooms" />
+                        <x-text-input type="number" class="form-control w-full mt-1" id="total_rooms" name="total_rooms" required value="{{ $hotel->total_rooms }}" placeholder="Enter total rooms" />
                         <x-input-error clss="mb-4" :messages="$errors->get('total_rooms')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
                         <x-input-label for="available_rooms" class="mt-2" value="{{ __('Available Rooms*') }}" />
-                        <x-text-input type="text" class="form-control w-full mt-1" id="available_rooms" name="available_rooms" required value="{{ $hotel->available_rooms }}" placeholder="Enter available rooms" />
+                        <x-text-input type="number" class="form-control w-full mt-1" id="available_rooms" name="available_rooms" required value="{{ $hotel->available_rooms }}" placeholder="Enter available rooms" />
                         <x-input-error clss="mb-4" :messages="$errors->get('available_rooms')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
                         <x-input-label for="room_type" class="mt-2" value="{{ __('Room Type*') }}" />
-                        <x-text-input type="text" class="form-control w-full mt-1" id="room_type" name="room_type" required value="{{ $hotel->room_type }}" placeholder="Enter room type" />
+                        <x-select-input
+                            name="room_type"
+                            :options="['king' => 'King Room', 'vip' => 'Vip Room']"
+                            placeholder="select room type"
+                            selected="{{ $hotel->room_type }}"
+                            required
+                        />
                         <x-input-error clss="mb-4" :messages="$errors->get('room_type')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
                         <x-input-label for="cost_per_day" class="mt-2" value="{{ __('cost_per_day*') }}" />
                         <x-text-input type="text" class="form-control w-full mt-1" id="cost_per_day" name="cost_per_day" required value="{{ $hotel->cost_per_day }}" placeholder="Enter cost / day" />
                         <x-input-error clss="mb-4" :messages="$errors->get('cost_per_day')" class="mt-1 mb-4" />
+                    </div>
+                    <div class="mb-3">
+                        <x-input-label for="image" class="mt-2" value="{{ __('Hotel Image*') }}" />
+                        <x-text-input type="file" class="form-control w-full mt-1" id="image" name="image" accept="image/jpg, image/jpeg, image/png" />
+                        <x-input-error clss="mb-4" :messages="$errors->get('image')" class="mt-1 mb-4" />
                     </div>
                     <!-- Add more input fields for other vehicle attributes as needed -->
                     <x-primary-button class="mt-4" type="submit">Submit</x-primary-button>

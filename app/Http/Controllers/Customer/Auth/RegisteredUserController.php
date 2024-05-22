@@ -35,15 +35,26 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.Customer::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'age' => ['required','numeric'],
+            'city' => ['required','string','max:255'],
+            'street' => ['required','string','max:255'],
+            'house_no' => ['required','string','max:255'],
+            'gender' => ['required','string','max:10'],
+            'nationality' => ['required','string','max:255'],
         ]);
 
         $user = Customer::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'age' => $request->age,
+            'phone_no' => $request->phone_no,
+            'city' => $request->city,
+            'street' => $request->street,
+            'house_no' => $request->house_no,
+            'gender' => $request->gender,
+            'nationality' => $request->nationality,
         ]);
-
-        $user->assignRole('customer');
 
         event(new Registered($user));
 

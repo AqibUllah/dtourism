@@ -4,11 +4,13 @@ namespace App\Http\Controllers\HotelManager;
 
 use App\Http\Controllers\Controller;
 use App\Models\Hotel;
+use App\traits\Image;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class HotelController extends Controller
 {
+    use Image;
     /**
      * Display a listing of the resource.
      */
@@ -38,13 +40,21 @@ class HotelController extends Controller
             'city' => ['required', 'string'],
             'street' => ['required', 'string'],
             'hotelNo' => ['required', 'numeric'],
-            'phone_no' => ['required', 'numeric'],
+            'phone_no' => ['required', 'string'],
             'email' => ['required', 'string','email'],
             'total_rooms' => ['required', 'numeric'],
             'available_rooms' => ['required', 'numeric'],
             'room_type' => ['required', 'string','max:255'],
             'cost_per_day' => ['required', 'string'],
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ]);
+
+        if($request->hasFile('image'))
+        {
+            $image = $this->uploadImage($request->file('image'),'uploads/hotels');
+        }else{
+            $image = "";
+        }
 
         Hotel::create([
             'name' => $request->name,
@@ -59,6 +69,7 @@ class HotelController extends Controller
             'available_rooms' => $request->available_rooms,
             'room_type' => $request->room_type,
             'cost_per_day' => $request->cost_per_day,
+            'image' => $image,
         ]);
 
         return redirect()->route('hotel_manager.hotels.index')->with(['success' => 'New hotel created!']);
@@ -106,15 +117,22 @@ class HotelController extends Controller
             'city' => ['required', 'string'],
             'street' => ['required', 'string'],
             'hotelNo' => ['required', 'numeric'],
-            'phone_no' => ['required', 'numeric'],
+            'phone_no' => ['required', 'string'],
             'email' => ['required', 'string','email'],
             'total_rooms' => ['required', 'numeric'],
             'available_rooms' => ['required', 'numeric'],
             'room_type' => ['required', 'string','max:255'],
-            'cost_per_day' => ['required', 'string'],
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ]);
 
         $hotel->update($request->all());
+
+        if($request->hasFile('image'))
+        {
+            $hotel->image = $this->uploadImage($request->file('image'),'uploads/hotels');
+            $hotel->save();
+        }
+
         return redirect()->route('hotel_manager.hotels.index')->with(['success' => 'Hotel has been updated!']);
     }
 

@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40224ac44aa676027e2dce8eef488131",
+    "content-hash": "501e1c88eaab18ef8675e7eb5bad2102",
     "packages": [
+        {
+            "name": "alertify/alert",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AqibUllah/Alertify.git",
+                "reference": "8bded0f6d188792d13795ab221c4dd1933c3079e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AqibUllah/Alertify/zipball/8bded0f6d188792d13795ab221c4dd1933c3079e",
+                "reference": "8bded0f6d188792d13795ab221c4dd1933c3079e",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Alertify\\Alert\\AlertifyServiceProvider"
+                    ],
+                    "aliases": {
+                        "alertify": "Alertify\\AlertFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Alertify\\Alert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "aqibullah",
+                    "email": "aqibullah3312@gmail.com"
+                }
+            ],
+            "description": "awesome alert messages",
+            "keywords": [
+                "alert",
+                "alertify",
+                "messages",
+                "toast"
+            ],
+            "support": {
+                "issues": "https://github.com/AqibUllah/Alertify/issues",
+                "source": "https://github.com/AqibUllah/Alertify/tree/0.0.1"
+            },
+            "time": "2023-12-31T15:03:56+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.12.1",

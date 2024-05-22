@@ -18,6 +18,7 @@ class Vehicle extends Model
         'vehicle_type',
         'capacity',
         'price_per_km',
+        'picture',
         'transporter_id',
     ];
     public function bookings() {

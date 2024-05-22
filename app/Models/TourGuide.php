@@ -20,6 +20,10 @@ class TourGuide extends Authenticatable
         'city',
         'street',
         'house_no',
+        'image',
+        'specialization',
+        'language',
+        'price_per_3_hours',
         'gender',
         'nationality',
     ];

@@ -21,6 +21,7 @@ class Hotel extends Model
         'total_rooms',
         'available_rooms',
         'room_type',
+        'image',
         'cost_per_day',
     ];
 

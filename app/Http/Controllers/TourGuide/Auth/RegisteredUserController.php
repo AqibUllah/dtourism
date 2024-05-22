@@ -7,6 +7,7 @@ use App\Models\HotelManager;
 use App\Models\TourGuide;
 use App\Models\Transporter;
 use App\Models\User;
+use App\traits\Image;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
+    use Image;
     /**
      * Display the registration view.
      */
@@ -41,9 +43,19 @@ class RegisteredUserController extends Controller
             'age' => ['required', 'numeric'],
             'street' => ['required', 'string','max:255'],
             'house_no' => ['required', 'string','max:255'],
-//            'gender' => ['required', 'string','max:10'],
-//            'nationality' => ['required', 'string','max:255'],
+            'specialization' => ['required', 'string','max:255'],
+            'price_per_3_hours' => ['required', 'string','max:255'],
+            'image' => ['file','mimes:jpg,jpeg,png,gif','max:5000'],
+            'language' => ['required', 'string','max:255'],
+            'gender' => ['required', 'string','max:10'],
+            'nationality' => ['required', 'string','max:255'],
         ]);
+
+        if ($request->hasFile('image')){
+            $image = $this->uploadImage($request->file('image'),'uploads/users');
+        }else{
+            $image = "";
+        }
 
         $user = TourGuide::create([
             'name' => $request->name,
@@ -54,8 +66,12 @@ class RegisteredUserController extends Controller
             'street' => $request->street,
             'age' => $request->age,
             'house_no' => $request->house_no,
+            'specialization' => $request->specialization,
+            'language' => $request->language,
+            'price_per_3_hours' => $request->price_per_3_hours,
             'gender' => $request->gender,
             'nationality' => $request->nationality,
+            'image' => $image,
         ]);
 
         event(new Registered($user));

@@ -8,9 +8,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="container">
+            <div class="container bg-white p-5 rounded-md shadow-md">
 
-                <form action="{{ route('transporter.vehicles.store') }}" method="POST">
+                <form action="{{ route('transporter.vehicles.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="mb-3">
@@ -34,19 +34,30 @@
                         <x-input-error clss="mb-4" :messages="$errors->get('city')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
-                        <x-input-label for="company_name" class="mt-2" value="{{ __('EmaVehicle Type*') }}" />
-                        <x-text-input type="text" class="form-control w-full mt-1" id="vehicle_type" name="vehicle_type" required value="{{ old('vehicle_type') }}" placeholder="Enter type" />
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('Vehicle Type*') }}" />
+                        <x-select-input
+                            name="vehicle_type"
+                            :options="['bus' => 'Bus', 'car' => 'Car']"
+                            selected="{{ old('vehicle_type') }}"
+                            placeholder="select vehicle type"
+                            required
+                        />
                         <x-input-error clss="mb-4" :messages="$errors->get('vehicle_type')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
-                        <x-input-label for="company_name" class="mt-2" value="{{ __('Vehicle Capacity*') }}" />
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('Capacity*') }}" />
                         <x-text-input type="text" class="form-control w-full mt-1" id="capacity" name="capacity" required value="{{ old('capacity') }}" placeholder="Enter capacity" />
                         <x-input-error clss="mb-4" :messages="$errors->get('capacity')" class="mt-1 mb-4" />
                     </div>
                     <div class="mb-3">
-                        <x-input-label for="company_name" class="mt-2" value="{{ __('Vehicle Price / KM*') }}" />
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('Price Per 50km*') }}" />
                         <x-text-input type="text" class="form-control w-full mt-1" id="price_per_km" name="price_per_km" required value="{{ old('price_per_km') }}" placeholder="Enter Price/Km" />
                         <x-input-error clss="mb-4" :messages="$errors->get('price_per_km')" class="mt-1 mb-4" />
+                    </div>
+                    <div class="mb-3">
+                        <x-input-label for="company_name" class="mt-2" value="{{ __('Vehicle Picture*') }}" />
+                        <x-text-input type="file" class="form-control w-full mt-1" id="picture" name="picture" required accept="image/jpg, image/jpeg, image/png" />
+                        <x-input-error clss="mb-4" :messages="$errors->get('picture')" class="mt-1 mb-4" />
                     </div>
                     <!-- Add more input fields for other vehicle attributes as needed -->
                     <x-primary-button class="mt-4" type="submit">Submit</x-primary-button>
